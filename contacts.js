@@ -19,10 +19,10 @@ async function listContacts() {
 async function getContactById(contactId) {
   try {
     const allContacts = await listContacts();
-    const contactById = allContacts.filter(
+    const [contactById] = allContacts.filter(
       (contact) => contactId === contact.id
     );
-    return contactById.length === 0 ? null : contactById[0];
+    return contactById.length === 0 ? null : contactById;
   } catch (error) {
     console.log(error.message.red);
     return null;
