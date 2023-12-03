@@ -19,13 +19,15 @@ async function listContacts() {
 async function getContactById(contactId) {
   try {
     const allContacts = await listContacts();
-    const [contactById] = allContacts.filter(
-      (contact) => contactId === contact.id
-    );
-    return contactById.length === 0 ? null : contactById;
+    const contactById = allContacts.find((contact) => contactId === contact.id);
+
+    if (contactById) {
+      return contactById;
+    } else {
+      return null;
+    }
   } catch (error) {
     console.log(error.message.red);
-    return null;
   }
 }
 
